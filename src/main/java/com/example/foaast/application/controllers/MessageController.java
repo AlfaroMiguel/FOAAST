@@ -1,6 +1,7 @@
 package com.example.foaast.application.controllers;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
+import static org.springframework.util.MimeTypeUtils.TEXT_HTML_VALUE;
 
 import com.example.foaast.domain.usecases.messages.GetAwesomeMessage;
 import org.slf4j.Logger;
@@ -22,8 +23,8 @@ public class MessageController {
         this.getAwesomeMessage = getAwesomeMessage;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/awesome/{from}", produces = APPLICATION_JSON_VALUE)
-    Mono<Void> getAwesomeMessage(
+    @RequestMapping(method = RequestMethod.GET, path = "/awesome/{from}", produces = TEXT_HTML_VALUE)
+    Mono<String> getAwesomeMessage(
         @PathVariable final String from,
         @RequestHeader String userId) { // TODO: pass a JWT token and take the userId from there.
             LOGGER.info("GET /api/v1/messages/awesome/{} with userId: {}", from, userId);

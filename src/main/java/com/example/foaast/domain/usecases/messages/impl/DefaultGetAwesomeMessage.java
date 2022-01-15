@@ -1,5 +1,6 @@
 package com.example.foaast.domain.usecases.messages.impl;
 
+import com.example.foaast.domain.repositories.MessageRepository;
 import com.example.foaast.domain.usecases.messages.GetAwesomeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +12,15 @@ public class DefaultGetAwesomeMessage implements GetAwesomeMessage {
 
     private static Logger LOGGER = LoggerFactory.getLogger(DefaultGetAwesomeMessage.class);
 
+    private final MessageRepository messageRepository;
+
+    public DefaultGetAwesomeMessage(MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
+    }
+
     @Override
-    public Mono<Void> get() {
+    public Mono<String> get() {
         LOGGER.info("Called DefaultGetAwesomeMessage:get");
-        return Mono.empty();
+        return messageRepository.retrieveAwesomeMessage();
     }
 }
