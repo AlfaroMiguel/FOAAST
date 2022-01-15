@@ -11,5 +11,5 @@ public interface GetAwesomeMessage {
      *
      * @return
      */
-    Mono<String> get();
+    Mono<String> get(String from);
 }

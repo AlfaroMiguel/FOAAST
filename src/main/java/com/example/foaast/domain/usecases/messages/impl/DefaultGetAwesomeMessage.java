@@ -19,8 +19,7 @@ public class DefaultGetAwesomeMessage implements GetAwesomeMessage {
     }
 
     @Override
-    public Mono<String> get() {
-        LOGGER.info("Called DefaultGetAwesomeMessage:get");
-        return messageRepository.retrieveAwesomeMessage();
+    public Mono<String> get(String from) {
+        return messageRepository.retrieveAwesomeMessage(from);
     }
 }

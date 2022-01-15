@@ -1,6 +1,5 @@
 package com.example.foaast.application.controllers;
 
-import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 import static org.springframework.util.MimeTypeUtils.TEXT_HTML_VALUE;
 
 import com.example.foaast.domain.usecases.messages.GetAwesomeMessage;
@@ -27,7 +26,7 @@ public class MessageController {
     Mono<String> getAwesomeMessage(
         @PathVariable final String from,
         @RequestHeader String userId) { // TODO: pass a JWT token and take the userId from there.
-            LOGGER.info("GET /api/v1/messages/awesome/{} with userId: {}", from, userId);
-            return getAwesomeMessage.get(); // TODO: add response type and mapper.
+            // TODO: check if needs to throttle or not.
+            return getAwesomeMessage.get(from); // TODO: add response type and mapper.
     }
 }

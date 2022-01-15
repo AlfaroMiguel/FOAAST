@@ -11,5 +11,5 @@ public interface MessageRepository {
     *
     * @return
     */
-   Mono<String> retrieveAwesomeMessage();
+   Mono<String> retrieveAwesomeMessage(String from);
 }
