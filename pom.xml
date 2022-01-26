@@ -59,6 +59,13 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- Guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.0.1-jre</version>
+        </dependency>
+
         <!-- Needed this to run on a Macbook Air M1 see: https://stackoverflow.com/questions/65954571/spring-boot-2-4-2-redisson-client-dns-resolution-problem-at-start -->
         <dependency>
             <groupId>io.netty</groupId>
