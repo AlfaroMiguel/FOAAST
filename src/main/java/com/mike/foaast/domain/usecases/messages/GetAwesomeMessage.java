@@ -1,4 +1,4 @@
-package com.example.foaast.domain.usecases.messages;
+package com.mike.foaast.domain.usecases.messages;
 
 import reactor.core.publisher.Mono;
 

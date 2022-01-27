@@ -1,4 +1,4 @@
-package com.example.foaast.application.filters;
+package com.mike.foaast.application.filters;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;

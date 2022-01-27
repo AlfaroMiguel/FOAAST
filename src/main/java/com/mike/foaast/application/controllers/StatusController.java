@@ -1,8 +1,8 @@
-package com.example.foaast.application.controllers;
+package com.mike.foaast.application.controllers;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
-import com.example.foaast.application.rest.response.RestPingResponse;
+import com.mike.foaast.application.rest.response.RestPingResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;

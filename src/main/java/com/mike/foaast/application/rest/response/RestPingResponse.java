@@ -1,4 +1,4 @@
-package com.example.foaast.application.rest.response;
+package com.mike.foaast.application.rest.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

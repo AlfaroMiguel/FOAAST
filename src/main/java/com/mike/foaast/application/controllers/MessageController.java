@@ -1,8 +1,8 @@
-package com.example.foaast.application.controllers;
+package com.mike.foaast.application.controllers;
 
 import static org.springframework.util.MimeTypeUtils.TEXT_HTML_VALUE;
 
-import com.example.foaast.domain.usecases.messages.GetAwesomeMessage;
+import com.mike.foaast.domain.usecases.messages.GetAwesomeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;

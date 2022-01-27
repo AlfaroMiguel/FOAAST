@@ -1,4 +1,4 @@
-package com.example.foaast.domain.repositories;
+package com.mike.foaast.domain.repositories;
 
 import reactor.core.publisher.Mono;
 

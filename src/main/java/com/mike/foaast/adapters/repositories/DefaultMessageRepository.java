@@ -1,6 +1,6 @@
-package com.example.foaast.adapters.repositories;
+package com.mike.foaast.adapters.repositories;
 
-import com.example.foaast.domain.repositories.MessageRepository;
+import com.mike.foaast.domain.repositories.MessageRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

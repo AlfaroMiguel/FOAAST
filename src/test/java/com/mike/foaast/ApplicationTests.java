@@ -1,4 +1,4 @@
-package com.example.foaast;
+package com.mike.foaast;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

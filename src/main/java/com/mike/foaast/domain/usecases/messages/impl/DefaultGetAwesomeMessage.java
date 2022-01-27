@@ -1,7 +1,7 @@
-package com.example.foaast.domain.usecases.messages.impl;
+package com.mike.foaast.domain.usecases.messages.impl;
 
-import com.example.foaast.domain.repositories.MessageRepository;
-import com.example.foaast.domain.usecases.messages.GetAwesomeMessage;
+import com.mike.foaast.domain.repositories.MessageRepository;
+import com.mike.foaast.domain.usecases.messages.GetAwesomeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
