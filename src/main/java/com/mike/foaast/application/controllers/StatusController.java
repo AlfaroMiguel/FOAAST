@@ -1,8 +1,9 @@
 package com.mike.foaast.application.controllers;
 
+import static com.mike.foaast.application.ApplicationConstants.STATUS_MESSAGE;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
-import com.mike.foaast.application.rest.response.RestPingResponse;
+import com.mike.foaast.rest.response.RestPingResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class StatusController {
     @ResponseStatus(HttpStatus.OK)
     public Mono<ResponseEntity<RestPingResponse>> ping() {
         RestPingResponse response = RestPingResponse.builder()
-            .message("pong")
+            .message(STATUS_MESSAGE)
             .build();
 
         return Mono.just(

@@ -1,0 +1,5 @@
+application:
+  messageServiceBaseUrl: ${MESSAGE_SERVICE_BASE_URL:https://foaas.com}
+  throttler:
+    cacheExpiringAfterSecs: ${CACHE_EXPIRING_AFTER_SECS:10}
+    maxRequestsPerUser: ${MAX_REQUESTS_PER_USER:5}

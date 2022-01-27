@@ -2,7 +2,7 @@ package com.mike.foaast.application.controllers;
 
 import static org.springframework.util.MimeTypeUtils.TEXT_HTML_VALUE;
 
-import com.mike.foaast.domain.usecases.messages.GetAwesomeMessage;
+import com.mike.foaast.domain.usecases.messages.RetrieveAwesomeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,17 +16,17 @@ import reactor.core.publisher.Mono;
 @RequestMapping(value = "/api/v1/messages")
 public class MessageController {
     private static Logger LOGGER = LoggerFactory.getLogger(MessageController.class);
-    private final GetAwesomeMessage getAwesomeMessage;
+    private final RetrieveAwesomeMessage retrieveAwesomeMessage;
 
-    public MessageController(GetAwesomeMessage getAwesomeMessage) {
-        this.getAwesomeMessage = getAwesomeMessage;
+    public MessageController(RetrieveAwesomeMessage retrieveAwesomeMessage) {
+        this.retrieveAwesomeMessage = retrieveAwesomeMessage;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/awesome/{from}", produces = TEXT_HTML_VALUE)
     Mono<String> getAwesomeMessage(
         @PathVariable final String from,
-        @RequestHeader String userId) { // TODO: pass a JWT token and take the userId from there.
-            // TODO: check if needs to throttle or not.
-            return getAwesomeMessage.get(from); // TODO: add response type and mapper.
+        @RequestHeader String userId) {
+        LOGGER.info("Awesome message requested from {} with userId {}", from, userId);
+        return retrieveAwesomeMessage.retrieve(from);
     }
 }

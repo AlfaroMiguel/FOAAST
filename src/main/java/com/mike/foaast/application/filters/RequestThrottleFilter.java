@@ -3,8 +3,7 @@ package com.mike.foaast.application.filters;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -16,16 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import static com.mike.foaast.application.ApplicationConstants.*;
+
 @Component
 public class RequestThrottleFilter extends OncePerRequestFilter {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RequestThrottleFilter.class);
 
-    private static final Integer EXPIRING_TIME = 10;
-    private static final Integer MAX_REQUESTS = 5;
-
+    private final Integer maxRequestsPerUser;
     private final LoadingCache<String, Integer> requestCountsPerUserId;
 
-    public RequestThrottleFilter() {
+    public RequestThrottleFilter(@Value("${application.throttler.cacheExpiringAfterSecs}") Integer cacheExpiringAfterSecs,
+                                 @Value("${application.throttler.maxRequestsPerUser}") Integer maxRequestsPerUser) {
+        this.maxRequestsPerUser = maxRequestsPerUser;
         CacheLoader<String, Integer> loader;
         loader = new CacheLoader<>() {
             @Override
@@ -34,16 +34,16 @@ public class RequestThrottleFilter extends OncePerRequestFilter {
             }
         };
         this.requestCountsPerUserId = CacheBuilder.newBuilder()
-                .expireAfterWrite(EXPIRING_TIME, TimeUnit.SECONDS)
+                .expireAfterWrite(cacheExpiringAfterSecs, TimeUnit.SECONDS)
                 .build(loader);
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String userId = request.getHeader("userId");
+        String userId = request.getHeader(USER_ID_HEADER);
         if (this.isMaximumRequestsExceeded(userId)){
             response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
-            response.getWriter().write("Too many requests");
+            response.getWriter().write(TOO_MANY_REQUESTS_MESSAGE);
             return;
         }
         filterChain.doFilter(request, response);
@@ -52,7 +52,7 @@ public class RequestThrottleFilter extends OncePerRequestFilter {
     private boolean isMaximumRequestsExceeded(String userId) {
         Integer requests = requestCountsPerUserId.getIfPresent(userId);
         if(requests != null){
-            if(requests > MAX_REQUESTS) {
+            if(requests > this.maxRequestsPerUser) {
                 return true;
             }
         } else {
