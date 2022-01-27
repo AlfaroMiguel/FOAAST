@@ -23,7 +23,7 @@ public class RequestThrottleFilter extends OncePerRequestFilter {
     private static final Integer EXPIRING_TIME = 10;
     private static final Integer MAX_REQUESTS = 5;
 
-    private LoadingCache<String, Integer> requestCountsPerUserId;
+    private final LoadingCache<String, Integer> requestCountsPerUserId;
 
     public RequestThrottleFilter() {
         CacheLoader<String, Integer> loader;
@@ -51,17 +51,14 @@ public class RequestThrottleFilter extends OncePerRequestFilter {
 
     private boolean isMaximumRequestsExceeded(String userId) {
         Integer requests = requestCountsPerUserId.getIfPresent(userId);
-        LOGGER.info("before requests: {}", requests);
         if(requests != null){
             if(requests > MAX_REQUESTS) {
-                LOGGER.info("max requests reached");
                 return true;
             }
         } else {
             requests = 0;
         }
         requests++;
-        LOGGER.info("after requests: {}", requests);
         requestCountsPerUserId.put(userId, requests);
         return false;
     }
