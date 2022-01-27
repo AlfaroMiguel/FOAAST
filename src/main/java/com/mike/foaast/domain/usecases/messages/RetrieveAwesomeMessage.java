@@ -3,14 +3,16 @@ package com.mike.foaast.domain.usecases.messages;
 import reactor.core.publisher.Mono;
 
 /**
- * Get awesome message.
+ * Retrieves an awesome message.
  */
 @FunctionalInterface
 public interface RetrieveAwesomeMessage {
+
     /**
-     * It fetches an awesome message and
+     * Retrieves an awesome message.
      *
-     * @return
+     * @param from Who requests the message.
+     * @return A Mono of the string containing the message in HTML format.
      */
     Mono<String> retrieve(String from);
 }

@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class DefaultRetrieveAwesomeMessage implements RetrieveAwesomeMessage {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(DefaultRetrieveAwesomeMessage.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultRetrieveAwesomeMessage.class);
 
     private final MessageRepository messageRepository;
 
