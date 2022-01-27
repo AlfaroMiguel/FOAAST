@@ -23,7 +23,7 @@ public class MessageController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/awesome/{from}", produces = TEXT_HTML_VALUE)
-    Mono<String> getAwesomeMessage(
+    Mono<String> retrieveAwesomeMessage(
         @PathVariable final String from,
         @RequestHeader String userId) {
         LOGGER.info("Awesome message requested from {} with userId {}", from, userId);
