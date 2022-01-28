@@ -19,6 +19,7 @@ import static com.mike.foaast.application.ApplicationConstants.*;
 
 @Component
 public class RequestThrottleFilter extends OncePerRequestFilter {
+    private static final String MESSAGES_URL_PATTERN = "^/api/v1/messages";
 
     private final Integer maxRequestsPerUser;
     private final LoadingCache<String, Integer> requestCountsPerUserId;
@@ -61,5 +62,11 @@ public class RequestThrottleFilter extends OncePerRequestFilter {
         requests++;
         requestCountsPerUserId.put(userId, requests);
         return false;
+    }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String path = request.getRequestURI();
+        return !path.matches(MESSAGES_URL_PATTERN);
     }
 }
