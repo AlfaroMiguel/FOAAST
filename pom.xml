@@ -73,7 +73,14 @@
             <version>3.12.0</version>
         </dependency>
 
-        <!-- Needed this to run on a Macbook Air M1 see: https://stackoverflow.com/questions/65954571/spring-boot-2-4-2-redisson-client-dns-resolution-problem-at-start -->
+        <!-- OK Http3 -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>mockwebserver</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Netty -->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>

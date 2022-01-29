@@ -19,7 +19,7 @@ import static com.mike.foaast.application.ApplicationConstants.*;
 
 @Component
 public class RequestThrottleFilter extends OncePerRequestFilter {
-    private static final String MESSAGES_URL_PATTERN = "^/api/v1/messages";
+    private static final String MESSAGES_URL_PATH = "/api/v1/messages";
 
     private final Integer maxRequestsPerUser;
     private final LoadingCache<String, Integer> requestCountsPerUserId;
@@ -53,7 +53,7 @@ public class RequestThrottleFilter extends OncePerRequestFilter {
     private boolean isMaximumRequestsExceeded(String userId) {
         Integer requests = requestCountsPerUserId.getIfPresent(userId);
         if(requests != null){
-            if(requests > this.maxRequestsPerUser) {
+            if(requests >= this.maxRequestsPerUser) {
                 return true;
             }
         } else {
@@ -65,8 +65,8 @@ public class RequestThrottleFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+    protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getRequestURI();
-        return !path.matches(MESSAGES_URL_PATTERN);
+        return !path.startsWith(MESSAGES_URL_PATH);
     }
 }

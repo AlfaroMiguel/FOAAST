@@ -3,7 +3,7 @@ package com.mike.foaast;
 public interface TestConstants {
     // Service values
     String USER_ID_HEADER_NAME = "userId";
-    String MESSAGES_SERVICE_URL = "testUrl";
+    String MESSAGES_SERVICE_BASE_URL = "/messages";
 
     // Valid values
     String VALID_STATUS_PING_RESPONSE = "{\"message\":\"pong\"}";
