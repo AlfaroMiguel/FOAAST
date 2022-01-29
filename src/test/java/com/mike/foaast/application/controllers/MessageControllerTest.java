@@ -11,7 +11,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import reactor.core.publisher.Mono;
 import reactor.test.publisher.PublisherProbe;
 
-import static com.mike.foaast.application.controllers.TestConstants.*;
+import static com.mike.foaast.TestConstants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -53,6 +53,7 @@ public class MessageControllerTest {
                     assertThat(responseString).isEqualTo(VALID_AWESOME_MESSAGE);
                 });
 
+        assertThat((publisherProbe).wasSubscribed()).isTrue();
         verify(this.retrieveAwesomeMessage).retrieve(VALID_FROM_NAME);
     }
 }
