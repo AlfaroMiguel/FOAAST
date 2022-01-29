@@ -2,7 +2,7 @@
 
 # What is FOOAST?
 
-FOAAST is an application that serves as a Throttler for the original [FOAAS app](https://foaas.com/), it will block the request if an user makes more than a specific number of calls within a period of time.
+FOAAST is an application that serves as a Throttler for the original [FOAAS](https://foaas.com/), it will block the request if an user makes more than a specific number of calls within a period of time.
 
 # How to run it locally?
 
