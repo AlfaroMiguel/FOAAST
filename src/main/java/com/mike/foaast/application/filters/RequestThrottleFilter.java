@@ -42,6 +42,12 @@ public class RequestThrottleFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String userId = request.getHeader(USER_ID_HEADER);
+
+        if (userId == null) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         if (this.isMaximumRequestsExceeded(userId)){
             response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
             response.getWriter().write(TOO_MANY_REQUESTS_MESSAGE);
